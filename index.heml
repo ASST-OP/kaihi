@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スパム回避</title>
+</head>
+<body>
+
+    <h1>ソフトハイフンを挿入する</h1>
+    <input type="text" id="inputText" placeholder="文字列を入力">
+    <button onclick="insertSoftHyphen()">ソフトハイフンを挿入</button>
+    <p id="outputText"></p>
+
+    <script>
+        function insertSoftHyphen() {
+            const input = document.getElementById('inputText').value;
+            const withHyphens = input.split('').join('&shy;');
+            document.getElementById('outputText').innerHTML = withHyphens;
+        }
+    </script>
+
+</body>
+</html>
