@@ -7,16 +7,31 @@
 </head>
 <body>
 
-    <h1>ソフトハイフンを挿入する</h1>
+    <h1>スパム回避用文字列にする</h1>
     <input type="text" id="inputText" placeholder="文字列を入力">
     <button onclick="insertSoftHyphen()">ソフトハイフンを挿入</button>
     <p id="outputText"></p>
+    <button onclick="copyToClipboard()">コピー</button>
 
     <script>
         function insertSoftHyphen() {
             const input = document.getElementById('inputText').value;
             const withHyphens = input.split('').join('&shy;');
             document.getElementById('outputText').innerHTML = withHyphens;
+        }
+
+        function copyToClipboard() {
+            const output = document.getElementById('outputText').innerHTML;
+
+            // 一時的にテキストエリアを作成して、そこにテキストを入れて選択・コピーする
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = output;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            alert('コピーしました: ');
         }
     </script>
 
