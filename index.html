@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>スパム回避1.02</title>
+    <title>スパム回避用1.03</title>
 </head>
 <body>
 
     <input type="text" id="inputText" placeholder="文字列を入力">
-    <button onclick="insertAndCopy()">スパム回避用に加工</button>
-    <p id="outputText"></p>
-
+    <button onclick="insertAndCopy()">スパム回避用に加工する</button>
+    
     <script>
         function insertAndCopy() {
             const input = document.getElementById('inputText').value;
-            const withHyphens = input.split('').join('&shy;');
-            document.getElementById('outputText').innerHTML = withHyphens;
+            const softHyphen = '\u00AD';
+            const withHyphens = input.split('').join(softHyphen);
 
             // 一時的にテキストエリアを作成して、そこにテキストを入れて選択・コピーする
             const tempTextArea = document.createElement('textarea');
@@ -26,6 +25,9 @@
             document.body.removeChild(tempTextArea);
 
             alert('コピーしました: ');
+
+            // 入力フィールドをクリアする
+            document.getElementById('inputText').value = '';
         }
     </script>
 
